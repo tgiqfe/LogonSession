@@ -219,7 +219,9 @@ public class UserLogonSession {
     {
         var sessions = GetLoggedOnSession();
         var session = sessions.
-            FirstOrDefault(x => x.UserName == username && (userdomain == null || x.UserDomain == userdomain));
+            FirstOrDefault(x => 
+                username.Equals(x.UserName, StringComparison.OrdinalIgnoreCase) &&
+                (userdomain == null || userdomain.Equals(x.UserDomain, StringComparison.OrdinalIgnoreCase)));
         return session?.Disconnect() ?? false;
     }
 
@@ -235,7 +237,9 @@ public class UserLogonSession {
     {
         var sessions = GetLoggedOnSession();
         var session = sessions.
-            FirstOrDefault(x => x.UserName == username && (userdomain == null || x.UserDomain == userdomain));
+            FirstOrDefault(x =>
+                username.Equals(x.UserName, StringComparison.OrdinalIgnoreCase) &&
+                (userdomain == null || userdomain.Equals(x.UserDomain, StringComparison.OrdinalIgnoreCase)));
         return session?.Logoff() ?? false;
     }
 
