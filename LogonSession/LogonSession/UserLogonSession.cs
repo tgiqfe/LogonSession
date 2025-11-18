@@ -17,7 +17,7 @@ namespace LogonSession.LogonSession
         public string SessionType { get; set; }
         public string SessionState { get; set; }
         public int ProtocolType { get; set; }
-        public DateTime LogonTime { get; set; }
+        public string LogonTime { get; set; }
 
         #endregion
 
@@ -71,7 +71,7 @@ namespace LogonSession.LogonSession
                             SessionType = Marshal.PtrToStringAnsi(sessionTypePtr),
                             SessionState = si.State.ToString(),
                             ProtocolType = Marshal.ReadInt32(protocolTypePtr),
-                            LogonTime = wtsinfo.LogonTime,
+                            LogonTime = wtsinfo.LogonTime.ToString("yyyy/MM/dd HH:mm:ss"),
                         });
                     }
 
